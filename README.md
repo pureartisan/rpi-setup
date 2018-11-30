@@ -21,6 +21,7 @@ Note: We only want a shallow clone (bare minimal)
 ```
 cd ~
 git clone --depth 1 https://github.com/prageeth/rpi-setup.git
+cd rpi-setup
 ```
 
 ### Initialise the environment
