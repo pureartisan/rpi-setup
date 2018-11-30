@@ -1,0 +1,86 @@
+# Raspberry Pi Setup
+
+## Setup Wifi
+
+Read the section [here](https://github.com/prageeth/rpi-setup/blob/master/network)
+
+## Getting Started
+
+### Install git
+
+Note: `-y` to answer "yes" to installing
+
+```
+sudo apt-get -y install git
+```
+
+### Clone Project
+
+Note: We only want a shallow clone (bare minimal)
+
+```
+git clone --depth 1 https://github.com/prageeth/rpi-setup.git
+```
+
+### Initialise the environment
+
+The following script installs all the necessary frameworks:
+- Node (v10.14.1) and NPM 
+-- To install a different version, change in `./init/install-node.sh`. Use the official [nodejs distribution list](https://nodejs.org/dist/)
+
+## Useful commands
+
+### Shutdown
+
+```
+sudo shutdown -h now
+```
+
+### Reboot
+
+```
+sudo reboot
+```
+
+### Raspbian Configurations
+
+```
+sudo raspi-config
+```
+
+## Configurations
+
+### Keyboard layout
+
+You can the default keyboard layout. You could either use the `raspi-config` (not my preference if you want to simply change layout from `gb` to `us`), I'd rather prefer:
+
+```
+sudo name /etc/default/keyboard
+```
+Then change the default layout by editing the line:
+```
+XKBLAYOUT="us"
+```
+
+### Default Login
+
+```
+username: pi
+password: raspberry
+```
+
+***NOTE***: Using the `raspi-config`, make sure you change the default password.
+
+### Enable SSH
+
+Use the `raspi-config` and follow:
+```
+5 Interfacing Options > P2 SSH > YES
+```
+
+### Boot options (auto login, with password prompt)
+
+Use the `raspi-config` and follow:
+```
+3 Boot Options > Desktop / CLI
+```
