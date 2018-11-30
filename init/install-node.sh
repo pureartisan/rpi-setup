@@ -23,3 +23,7 @@ sudo cp -R * /usr/local/
 cd ~
 rm -rf nodejs-temp-download
 rm -f nodejs.tar.xz
+
+# verify
+node -v
+npm -v
