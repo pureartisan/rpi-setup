@@ -19,6 +19,7 @@ sudo apt-get -y install git
 Note: We only want a shallow clone (bare minimal)
 
 ```
+cd ~
 git clone --depth 1 https://github.com/prageeth/rpi-setup.git
 ```
 
@@ -27,6 +28,10 @@ git clone --depth 1 https://github.com/prageeth/rpi-setup.git
 The following script installs all the necessary frameworks:
 - Node (v10.14.1) and NPM 
 -- To install a different version, change in `./init/install-node.sh`. Use the official [nodejs distribution list](https://nodejs.org/dist/)
+
+```
+./init/run.sh
+```
 
 ## Useful commands
 
