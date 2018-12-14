@@ -61,7 +61,7 @@ sudo raspi-config
 You can the default keyboard layout. You could either use the `raspi-config` (not my preference if you want to simply change layout from `gb` to `us`), I'd rather prefer:
 
 ```
-sudo name /etc/default/keyboard
+sudo nano /etc/default/keyboard
 ```
 Then change the default layout by editing the line:
 ```
