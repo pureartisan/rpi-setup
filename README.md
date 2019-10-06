@@ -90,3 +90,7 @@ Use the `raspi-config` and follow:
 ```
 3 Boot Options > Desktop / CLI
 ```
+
+# Minimal GUI
+
+More info in [docs](docs/gui.md)
