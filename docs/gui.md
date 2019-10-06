@@ -17,9 +17,9 @@ change `allowed_users` to `anybody`
 We can specific what needs to be done when xserver starts by setting `~/.xinitrc
 
 ```
-xset s off
-xset -dmps
-xset s noblank
+xset s off # disable screen saver
+xset -dmps # disable DPMS (Energy Star) features.
+xset s noblank # don't blank the video device
 
 # anything else
 
@@ -35,7 +35,7 @@ Make sure the `Control + Alt + Backspace` is set as the key combo to terminate X
 sudo apt-get install xcb qt5-default
 ```
 
-## Chromium (Kiosk)
+### Option 2: Chromium (Kiosk)
 ```
 sudo apt-get install chromium-browser
 ```
@@ -50,6 +50,30 @@ Could be due to overscan
 Edit `/boot/config.txt`
 Add `disable_overscan=1`
 Save and restart the pi.
+
+## Option 3: Midori Browser
+
+Install the matchbox software which is is a free and open source window manager for the X Window System. Matchbox is mainly intended for embedded systems and it is very lightweight.
+```
+sudo apt-get install matchbox
+```
+
+Install midori browser
+```
+sudo apt-get install midori
+```
+
+Running midori in full screen (using matchbox)
+```
+matchbox-window-manager &
+midori -e Fullscreen -a https://google.com
+```
+
+## Hiding mouse pointer
+When there's no activity
+```
+sudo apt-get install unclutter
+```
 
 ## Starting X11 at boot
 
