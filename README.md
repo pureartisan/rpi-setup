@@ -91,6 +91,22 @@ Use the `raspi-config` and follow:
 3 Boot Options > Desktop / CLI
 ```
 
+# Static IP
+Edit the DHCP settings
+```
+sudo nano /etc/dhcpcd.conf
+```
+Enable static IP, the sample lines should be commented out by default, so let's uncomment them:
+```
+interface eth0
+static ip_address=192.168.1.XX/24
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1
+```
+* `eth0` should be `wlan0` for wireless connection (or appropriate name)
+* `192.168.1.XX` should be related to the router
+* using multiple DNS `domain_name_servers=8.8.8.8 192.168.1.1`
+
 # Minimal GUI
 
 More info in [docs](docs/gui.md)
