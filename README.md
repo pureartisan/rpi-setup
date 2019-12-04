@@ -27,7 +27,7 @@ cd rpi-setup
 ### Initialise the environment
 
 The following script installs all the necessary frameworks:
-- Node (v10.14.1) and NPM 
+- Node (v10.14.1) and NPM
 -- To install a different version, change in `./init/install-node.sh`. Use the official [nodejs distribution list](https://nodejs.org/dist/)
 
 ```
@@ -94,3 +94,8 @@ Use the `raspi-config` and follow:
 # Minimal GUI
 
 More info in [docs](docs/gui.md)
+
+
+# Disk Setup
+
+More info in [docs](docs/disk.md)
