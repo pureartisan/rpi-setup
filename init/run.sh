@@ -20,6 +20,10 @@ do
         setup_ramdisk=true
         shift # past argument
         ;;
+    --ftp)
+        install_ftp_server=true
+        shift # past argument
+        ;;
     # -o|--output)
     #     OUTPUTPARAM="${2}"
     #     shift # past argument
@@ -63,8 +67,13 @@ if [ "$setup_firewall" = true ] ; then
 fi
 
 # setup ram disk
-if [ "$ramdisk" = true ] ; then
+if [ "$setup_ramdisk" = true ] ; then
     . $DIRECTORY/setup-ram-disk.sh
+fi
+
+# setup ftp server
+if [ "$install_ftp_server" = true ] ; then
+    . $DIRECTORY/install-ftp-server.sh
 fi
 
 # enable startup scripts
