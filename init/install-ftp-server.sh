@@ -62,15 +62,15 @@ sudo pure-pw mkdb
 sudo ln -s $PURE_FTP_CONF/PureDB /etc/pure-ftpd/auth/000puredb
 
 # config
-echo "yes"      > $PURE_FTP_CONF/ChrootEveryone
-echo "yes"      > $PURE_FTP_CONF/NoAnonymous
-echo "yes"      > $PURE_FTP_CONF/AnonymousCantUpload
-echo "no"       > $PURE_FTP_CONF/AnonymousCanCreateDirs
-echo "yes"      > $PURE_FTP_CONF/DisplayDotFiles
-echo "yes"      > $PURE_FTP_CONF/DontResolve
-echo "no"       > $PURE_FTP_CONF/ProhibitDotFilesRead
-echo "no"       > $PURE_FTP_CONF/ProhibitDotFilesWrite
-echo "UTF-8"    > $PURE_FTP_CONF/FSCharset
+echo "yes"      | sudo tee $PURE_FTP_CONF/ChrootEveryone
+echo "yes"      | sudo tee $PURE_FTP_CONF/NoAnonymous
+echo "yes"      | sudo tee $PURE_FTP_CONF/AnonymousCantUpload
+echo "no"       | sudo tee $PURE_FTP_CONF/AnonymousCanCreateDirs
+echo "yes"      | sudo tee $PURE_FTP_CONF/DisplayDotFiles
+echo "yes"      | sudo tee $PURE_FTP_CONF/DontResolve
+echo "no"       | sudo tee $PURE_FTP_CONF/ProhibitDotFilesRead
+echo "no"       | sudo tee $PURE_FTP_CONF/ProhibitDotFilesWrite
+echo "UTF-8"    | sudo tee $PURE_FTP_CONF/FSCharset
 
 # restart server to take config into effect
 sudo service pure-ftpd restart
