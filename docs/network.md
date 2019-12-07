@@ -87,3 +87,7 @@ Use the following to check the assigned ip address.
 ```
 ip a
 ```
+
+## Firewalls
+
+More info in the [firewall](./firewall.md) section.

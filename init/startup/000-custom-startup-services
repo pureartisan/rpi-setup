@@ -1,0 +1,17 @@
+#!/bin/bash
+# /etc/init.d/000-custom-startup-service
+### BEGIN INIT INFO
+# Provides:          000-custom-startup-service
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Custom scripts at start up.
+# Description:       Run custom scripts at start up before other services start.
+### END INIT INFO
+
+echo "=== Running Custom Scripts ====================="
+
+/home/pi/startup/custom-startup-scripts.sh
+
+echo "=== Running Custom Scripts >>> DONE! ==========="

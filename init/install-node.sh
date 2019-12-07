@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "=== Installing NODE ====================="
+
 DOWNLOAD_TAR_XZ_FILE_URL=https://nodejs.org/dist/latest-v10.x/node-v10.14.1-linux-armv6l.tar.xz
 
 cd ~
@@ -27,3 +29,6 @@ rm -f nodejs.tar.xz
 # verify
 node -v
 npm -v
+
+
+echo "=== Installing NODE >>> DONE! ==========="
