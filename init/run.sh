@@ -16,6 +16,10 @@ do
         setup_firewall=true
         shift # past argument
         ;;
+    --ramdisk)
+        setup_ramdisk=true
+        shift # past argument
+        ;;
     # -o|--output)
     #     OUTPUTPARAM="${2}"
     #     shift # past argument
@@ -37,6 +41,8 @@ DIRECTORY=$(cd `dirname $0` && pwd)
 cd ~
 
 # all includes (note the starting '.', short for 'source')
+# using `source` gives the child script all the variables in this scope
+# specifically `$DIRECTORY`
 
 # update apt-get
 . $DIRECTORY/update-apt-get.sh
@@ -54,6 +60,11 @@ fi
 # setup firewall
 if [ "$setup_firewall" = true ] ; then
     . $DIRECTORY/setup-firewall.sh
+fi
+
+# setup ram disk
+if [ "$ramdisk" = true ] ; then
+    . $DIRECTORY/setup-ram-disk.sh
 fi
 
 # enable startup scripts
