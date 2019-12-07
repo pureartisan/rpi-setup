@@ -10,7 +10,7 @@ if test -f "$BASH_ALIASES_PATH"; then
 fi
 
 # copy bash aliases
-cp "$DIRECTORY/profile/.bash_aliases" "$BASH_ALIASES_PATH"
+cp $DIRECTORY/profile/.bash_aliases "$BASH_ALIASES_PATH"
 
 
 echo "=== Setting up PROFILE >>> DONE! ==========="
