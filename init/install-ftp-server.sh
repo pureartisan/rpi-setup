@@ -51,14 +51,28 @@ else
     sudo chown -R "$FTP_USER:$FTP_USER_GROUP" $FTP_USER_HOME_DIR
 fi
 
+PURE_FTP_CONF=/etc/pure-ftpd/conf
+
 # Creating virtual user for PureFTP
 echo "Linking user for PureFTP"
 sudo pure-pw useradd upload -u "FTP_USER" -g "$FTP_USER_GROUP" -d $FTP_USER_HOME_DIR -m
 # creating virtual user database
 sudo pure-pw mkdb
 # use this created DB as the authentication method
-sudo ln -s /etc/pure-ftpd/conf/PureDB /etc/pure-ftpd/auth/000puredb
+sudo ln -s $PURE_FTP_CONF/PureDB /etc/pure-ftpd/auth/000puredb
 
+# config
+echo "yes"      > $PURE_FTP_CONF/ChrootEveryone
+echo "yes"      > $PURE_FTP_CONF/NoAnonymous
+echo "yes"      > $PURE_FTP_CONF/AnonymousCantUpload
+echo "no"       > $PURE_FTP_CONF/AnonymousCanCreateDirs
+echo "yes"      > $PURE_FTP_CONF/DisplayDotFiles
+echo "yes"      > $PURE_FTP_CONF/DontResolve
+echo "no"       > $PURE_FTP_CONF/ProhibitDotFilesRead
+echo "no"       > $PURE_FTP_CONF/ProhibitDotFilesWrite
+echo "UTF-8"    > $PURE_FTP_CONF/FSCharset
+
+# restart server to take config into effect
 sudo service pure-ftpd restart
 
 
