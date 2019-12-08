@@ -55,22 +55,22 @@ PURE_FTP_CONF=/etc/pure-ftpd/conf
 
 # Creating virtual user for PureFTP
 echo "Linking user for PureFTP"
-sudo pure-pw useradd upload -u "FTP_USER" -g "$FTP_USER_GROUP" -d $FTP_USER_HOME_DIR -m
+sudo pure-pw useradd upload -u "$FTP_USER" -g "$FTP_USER_GROUP" -d $FTP_USER_HOME_DIR -m
 # creating virtual user database
 sudo pure-pw mkdb
 # use this created DB as the authentication method
 sudo ln -s $PURE_FTP_CONF/PureDB /etc/pure-ftpd/auth/000puredb
 
 # config
-echo "yes"      | sudo tee $PURE_FTP_CONF/ChrootEveryone
-echo "yes"      | sudo tee $PURE_FTP_CONF/NoAnonymous
-echo "yes"      | sudo tee $PURE_FTP_CONF/AnonymousCantUpload
-echo "no"       | sudo tee $PURE_FTP_CONF/AnonymousCanCreateDirs
-echo "yes"      | sudo tee $PURE_FTP_CONF/DisplayDotFiles
-echo "yes"      | sudo tee $PURE_FTP_CONF/DontResolve
-echo "no"       | sudo tee $PURE_FTP_CONF/ProhibitDotFilesRead
-echo "no"       | sudo tee $PURE_FTP_CONF/ProhibitDotFilesWrite
-echo "UTF-8"    | sudo tee $PURE_FTP_CONF/FSCharset
+echo "yes"      | sudo tee $PURE_FTP_CONF/ChrootEveryone             > /dev/null
+echo "yes"      | sudo tee $PURE_FTP_CONF/NoAnonymous                > /dev/null
+echo "yes"      | sudo tee $PURE_FTP_CONF/AnonymousCantUpload        > /dev/null
+echo "no"       | sudo tee $PURE_FTP_CONF/AnonymousCanCreateDirs     > /dev/null
+echo "yes"      | sudo tee $PURE_FTP_CONF/DisplayDotFiles            > /dev/null
+echo "yes"      | sudo tee $PURE_FTP_CONF/DontResolve                > /dev/null
+echo "no"       | sudo tee $PURE_FTP_CONF/ProhibitDotFilesRead       > /dev/null
+echo "no"       | sudo tee $PURE_FTP_CONF/ProhibitDotFilesWrite      > /dev/null
+echo "UTF-8"    | sudo tee $PURE_FTP_CONF/FSCharset                  > /dev/null
 
 # restart server to take config into effect
 sudo service pure-ftpd restart

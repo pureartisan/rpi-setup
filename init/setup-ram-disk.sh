@@ -19,7 +19,11 @@ else
     echo "## $RAM_DISK_DELIMITER" >> $FSTAB_PATH
     echo "tmpfs /tmp tmpfs defaults,noatime,nosuid 0 0" >> $FSTAB_PATH
     echo "tmpfs /var/log tmpfs defaults,noatime,nosuid,size=100m 0 0" >> $FSTAB_PATH
+    echo "tmpfs /var/session-data tmpfs defaults,noatime,nosuid,size=100m 0 0" >> $FSTAB_PATH
     echo "## $RAM_DISK_DELIMITER >>> END" >> $FSTAB_PATH
+
+    sudo mkdir -p /var/log
+    sudo mkdir -p /var/session-data
 
     sudo mount -a
 
