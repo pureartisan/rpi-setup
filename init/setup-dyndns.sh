@@ -21,7 +21,8 @@ sudo chmod 755 $DYNDNS_UPDATE_SCRIPT
 
 echo "Add cron job to check and update ip every minute"
 CRONTAB_FILE=/etc/cron.d/aws-route53-dyndns
-echo "*/1 * * * * $DYNDNS_UPDATE_SCRIPT >/dev/null 2>&1" | sudo tee $CRONTAB_FILE
+CRONTAB_USER="pi"
+echo "*/1 * * * * $CRONTAB_USER $DYNDNS_UPDATE_SCRIPT >/dev/null 2>&1" | sudo tee $CRONTAB_FILE
 
 
 echo "=== Setup DYNDNS >>> DONE! ==========="

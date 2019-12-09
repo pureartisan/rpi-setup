@@ -2,7 +2,7 @@
 
 # (optional) You might need to set your PATH variable at the top here
 # depending on how you run this script
-# PATH=PATH
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # Hosted Zone ID e.g. BJBK35SKMM9OE
 ZONEID="ZONEID"
@@ -19,11 +19,7 @@ COMMENT="Auto updating @ `date`"
 TYPE="A"
 
 # Get the external IP address from OpenDNS (more reliable than other providers)
-# curl ifconfig.me
-# curl icanhazip.com
-# curl ipecho.net/plain
-# curl ifconfig.co
-IP=`curl ifconfig.me`
+IP=`dig +short myip.opendns.com @resolver1.opendns.com -4`
 
 function valid_ip()
 {
@@ -44,6 +40,11 @@ function valid_ip()
 
 LOGFILE=/var/log/aws-route53-dyndns-update.log
 IPFILE=/var/session-data/aws-route53-dyndns-update.ip
+
+sudo touch $LOGFILE
+sudo touch $IPFILE
+sudo chmod 777 $LOGFILE
+sudo chmod 777 $IPFILE
 
 if ! valid_ip $IP; then
     echo "Invalid IP address: $IP" >> $LOGFILE
@@ -86,10 +87,11 @@ else
 EOF
 
     # Update the Hosted Zone record
+    echo "`date` Changing IP in Route53" >> $LOGFILE
     aws route53 change-resource-record-sets \
-        --hosted-zone-id $ZONEID \
-        --change-batch file://"$TMPFILE" >> $LOGFILE
-    echo "IP Changed in Route53" >> $LOGFILE
+        --hosted-zone-id "$ZONEID" \
+        --change-batch file://$TMPFILE >> $LOGFILE 2>&1
+    echo "`date` IP Changed in Route53" >> $LOGFILE
 
     # Clean up
     rm $TMPFILE

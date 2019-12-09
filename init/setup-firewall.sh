@@ -18,7 +18,7 @@ sudo chmod +x $FIREWALL_NETWORK_INIT_HOOK_FILE
 
 
 # install fail2ban
-sudo apt-get install fail2ban -y
+sudo apt-get install fail2ban iptables-persistent -y
 
 # create 'local' copy so updates don't override
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
@@ -28,6 +28,12 @@ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
 # add IP address
 # sudo nano /etc/fail2ban/jail.local
+
+# setup wordpress jails
+# https://bjornjohansen.no/using-fail2ban-with-wordpress
+sudo cp $DIRECTORY/init/firewall/fail2ban/filter-wordpress.conf  /etc/fail2ban/filter.d/wordpress.conf
+sudo cp $DIRECTORY/init/firewall/fail2ban/jail-wordpress.conf  /etc/fail2ban/jail.d/wordpress.conf
+
 
 
 echo "=== Setup FIREWALL >>> DONE! ==========="
