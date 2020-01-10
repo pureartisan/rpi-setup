@@ -1,3 +1,15 @@
+# port forwarding
+*nat
+:PREROUTING ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:OUTPUT ACCEPT [1:76]
+:POSTROUTING ACCEPT [0:0]
+
+-A PREROUTING -i wlan0 -p tcp --dport 80 -j REDIRECT --to-port 1888
+
+COMMIT
+
+
 *filter
 
 #  Allow all loopback (lo0) traffic and drop all traffic to 127/8 that doesn't use lo0
@@ -15,12 +27,29 @@
 -A INPUT -p tcp --dport 443 -j ACCEPT
 -A INPUT -p tcp --dport 8080 -j ACCEPT
 -A INPUT -p tcp --dport 8888 -j ACCEPT
+-A INPUT -p tcp --dport 280 -j ACCEPT
+
+# Node-Red
+-A INPUT -p tcp --dport 1880 -j ACCEPT
+-A INPUT -p tcp --dport 1888 -j ACCEPT
+
+# Home Assistant
+-A INPUT -p tcp --dport 8123 -j ACCEPT
 
 #  Allow SSH connections
 #
 #  The -dport number should be the same port number you set in sshd_config
 #
 -A INPUT -p tcp -m state --state NEW --dport 22 -j ACCEPT
+
+#  Allow SSDP
+-A INPUT -p udp --sport 1900 -j ACCEPT
+-A OUTPUT -d 239.255.255.250/32 -p udp --dport 1900 -j ACCEPT
+-A INPUT -p udp --dport 32768:61000 -j ACCEPT
+-A OUTPUT -p udp --dport 32768:61000 -j ACCEPT
+-A INPUT -p udp -s 192.168.178.0/24 -j ACCEPT
+-A OUTPUT -p udp -s 192.168.178.0/24 -j ACCEPT
+
 
 #  Allow ping
 -A INPUT -p icmp -j ACCEPT

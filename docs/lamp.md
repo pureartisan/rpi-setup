@@ -36,6 +36,14 @@ sudo systemctl restart apache2
 sudo a2enmod rewrite
 ```
 
+### Enable website
+```
+
+```
+
+### Open ports (listen to ports)
+Edit the `/etc/apache2/ports.conf` file and add `Listen <port-number>` as necessary.
+
 ## Config VirtualHosts
 ```
 sudo nano /etc/apache2/sites-available/000-default.conf
