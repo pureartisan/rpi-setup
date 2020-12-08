@@ -17,7 +17,7 @@ sudo a2ensite phpmyadmin
 
 # install let's encrypt
 echo "Installing certbot for let's encrypt"
-sudo apt-get install python-certbot-apache
+sudo apt-get install python-certbot-apache python3-certbot-dns-route53
 
 # enable mods
 sudo a2enmod headers
