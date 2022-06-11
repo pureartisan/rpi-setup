@@ -4,6 +4,9 @@
 # depending on how you run this script
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
+# AWS Profile name where credentials are saved
+AWS_PROFILE="${AWS_PROFILE:=default}"
+
 # Hosted Zone ID e.g. BJBK35SKMM9OE
 ZONEID="ZONEID"
 
@@ -89,6 +92,7 @@ EOF
     # Update the Hosted Zone record
     echo "`date` Changing IP in Route53" >> $LOGFILE
     aws route53 change-resource-record-sets \
+        --profile "$AWS_PROFILE" \
         --hosted-zone-id "$ZONEID" \
         --change-batch file://$TMPFILE >> $LOGFILE 2>&1
     echo "`date` IP Changed in Route53" >> $LOGFILE
