@@ -16,7 +16,7 @@ aws --version
 # copy dyn dns update script
 DYNDNS_UPDATE_SCRIPT=/etc/aws-route53-dyn-dns/update.sh
 sudo mkdir -p /etc/aws-route53-dyn-dns
-sudo cp $DIRECTORY/init/dyndns/update-dyn-dns-ip.sh $DYNDNS_UPDATE_SCRIPT
+sudo cp $DIRECTORY/dyndns/update-dyn-dns-ip.sh $DYNDNS_UPDATE_SCRIPT
 sudo chmod 755 $DYNDNS_UPDATE_SCRIPT
 
 echo "Add cron job to check and update ip every minute"
