@@ -3,7 +3,7 @@
 echo "=== Setup DYNDNS ====================="
 
 # install pip
-sudo apt-get install python-pip -y
+sudo apt-get install python3-pip -y
 pip --version
 
 # install DNS lookup utils
