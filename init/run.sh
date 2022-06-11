@@ -24,6 +24,10 @@ do
         install_ftp_server=true
         shift # past argument
         ;;
+    --dyndns)
+        setup_dyndns=true
+        shift # past argument
+        ;;
     # -o|--output)
     #     OUTPUTPARAM="${2}"
     #     shift # past argument
@@ -74,6 +78,11 @@ fi
 # setup ftp server
 if [ "$install_ftp_server" = true ] ; then
     . $DIRECTORY/install-ftp-server.sh
+fi
+
+# setup dyndns
+if [ "$setup_dyndns" = true ] ; then
+    . $DIRECTORY/setup-dyndns.sh
 fi
 
 # enable startup scripts
